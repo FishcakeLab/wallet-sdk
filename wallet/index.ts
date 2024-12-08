@@ -2,7 +2,7 @@ import {Interface} from '@ethersproject/abi';
 import {FeeMarketEIP1559Transaction, Transaction} from '@ethereumjs/tx'
 import Common from '@ethereumjs/common'
 const ethers = require('ethers');
-const BigNumber = require('BigNumber.js');
+const BigNumber = require('bignumber.js');
 
 export function numberToHex(value: any) {
     const number = BigNumber(value);

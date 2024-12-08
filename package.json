@@ -1,7 +1,7 @@
 {
   "name": "fish-wallet-sdk",
-  "version": "1.0.0",
-  "description": "fish cake wallet include hd and AA wallet",
+  "version": "0.0.1",
+  "description": "fish cake wallet include hd and AA wallet, support by dapplink",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "browser": "dist/umd/index.js",
