@@ -24,8 +24,8 @@ export function createAddress (seedHex: string, addressIndex: string) {
     });
 }
 
-export function signTransaction(params: { privateKey: string; nonce: number; from: string; to: string; gasLimit: number; amount: string; gasPrice: number; decimal: number; chainId: any; tokenAddress: string; maxPriorityFeePerGas?: number; maxFeePerGas?: number; }) {
-    let { privateKey, nonce, from, to, gasPrice, gasLimit, amount, tokenAddress, decimal, maxPriorityFeePerGas, maxFeePerGas, chainId } = params;
+export function signTransaction(params: { privateKey: string; nonce: number; from: string; to: string; gasLimit: number; amount: string; gasPrice: number; decimal: number; chainId: any; tokenAddress: string; callData: string;  maxPriorityFeePerGas?: number; maxFeePerGas?: number; }) {
+    let { privateKey, nonce, from, to, gasPrice, gasLimit, amount, tokenAddress, callData,  decimal, maxPriorityFeePerGas, maxFeePerGas, chainId } = params;
     const transactionNonce = numberToHex(nonce);
     const gasLimits = numberToHex(gasLimit);
     const chainIdHex = numberToHex(chainId);
@@ -50,7 +50,11 @@ export function signTransaction(params: { privateKey: string; nonce: number; fro
             "function transfer(address to, uint amount)"
         ];
         const iface = new Interface(ABI);
-        txData.data = iface.encodeFunctionData("transfer", [to, numBalanceHex]);
+        if (params.callData === "0x00") {
+            txData.data = callData;
+        } else {
+            txData.data = iface.encodeFunctionData("transfer", [to, numBalanceHex]);
+        }
         txData.to = tokenAddress;
         txData.value = 0;
     }
