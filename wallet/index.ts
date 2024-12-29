@@ -46,17 +46,16 @@ export function signTransaction(params: { privateKey: string; nonce: number; fro
         txData.gasPrice = numberToHex(gasPrice);
     }
     if (tokenAddress && tokenAddress !== "0x00") {
-        const ABI = [
-            "function transfer(address to, uint amount)"
-        ];
+        const ABI = ["function transfer(address to, uint amount)"];
         const iface = new Interface(ABI);
-        if (params.callData === "0x00") {
-            txData.data = callData;
+        if (params.callData) {
+          txData.data = callData;        
+          txData.value = "0x0";          
         } else {
-            txData.data = iface.encodeFunctionData("transfer", [to, numBalanceHex]);
+          txData.data = iface.encodeFunctionData("transfer", [to, numBalanceHex]);
+          txData.to = tokenAddress;      
         }
-        txData.to = tokenAddress;
-        txData.value = 0;
+        txData.value = "0x0";           
     }
     let common: any, tx: any;
     if (txData.maxFeePerGas && txData.maxPriorityFeePerGas) {

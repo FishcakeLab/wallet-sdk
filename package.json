@@ -27,13 +27,13 @@
     "access": "public"
   },
   "dependencies": {
-    "@ethersproject/abi": "5.4.0",
-    "ethers": "^5.6.9",
-    "bignumber.js": "9.0.1",
     "@ethereumjs/common": "2.4.0",
     "@ethereumjs/tx": "3.2.1",
+    "@ethersproject/abi": "5.4.0",
+    "bignumber.js": "9.0.1",
     "bip32": "^5.0.0-rc.0",
-    "bip39": "^3.0.4"
+    "bip39": "^3.0.4",
+    "ethers": "^5.7.2"
   },
   "devDependencies": {
     "@babel/core": "^7.25.8",
